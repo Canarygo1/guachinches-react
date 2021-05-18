@@ -9,16 +9,16 @@ function BusinessApp(props) {
           <img className={"img-app-logo"} src="logo.png" alt=""/>
         </div>
         <div className={"top-menu-items"}>
-          <Typography variant={"subtitle1"}>Inicio</Typography>
-          <Typography variant={"subtitle1"}>Historia</Typography>
-          <Typography variant={"subtitle1"}>Redes sociales</Typography>
+          <Typography variant={"h6"}>Inicio</Typography>
+          <Typography variant={"h6"}>Historia</Typography>
+          <Typography variant={"h6"}>Redes sociales</Typography>
         </div>
       </div>
       <div className={"page-container-business-app"}>
         <div className={"divide-row-text-businessApp"}>
           <Box display={"flex"} flexDirection={"column"} >
             <Typography variant={"h1"}>
-              <Box  className={"text-center"} fontWeight={500} alignSelf={"center"}>
+              <Box fontSize={"10rem"} className={"text-center"} fontWeight={500} alignSelf={"center"}>
                 Descarga nuestra app
               </Box>
             </Typography>
