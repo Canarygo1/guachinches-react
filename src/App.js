@@ -11,6 +11,13 @@ function App() {
     }
   })
   theme = responsiveFontSizes(theme);
+  theme.typography.h1 = {
+    fontSize:'3.4em',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '10rem',
+    },
+  }
+
   return (
     <ThemeProvider theme={theme}>
 

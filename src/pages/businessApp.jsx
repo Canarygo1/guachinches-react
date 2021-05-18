@@ -18,7 +18,7 @@ function BusinessApp(props) {
         <div className={"divide-row-text-businessApp"}>
           <Box display={"flex"} flexDirection={"column"} >
             <Typography variant={"h1"}>
-              <Box fontSize={"10rem"} className={"text-center"} fontWeight={500} alignSelf={"center"}>
+              <Box fontSize={"1.1em"} className={"text-title-mobile"} fontWeight={500} alignSelf={"center"}>
                 Descarga nuestra app
               </Box>
             </Typography>
