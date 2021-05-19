@@ -1,6 +1,6 @@
 import './App.css';
 import {createMuiTheme, responsiveFontSizes, ThemeProvider} from "@material-ui/core";
-import BusinessApp from "./pages/businessApp";
+import ROUTES, {RenderRoutes} from "./helpers/routes";
 
 function App() {
   let theme = createMuiTheme({
@@ -20,9 +20,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-
-      <BusinessApp>
-      </BusinessApp>
+      <RenderRoutes routes={ROUTES}/>
     {/*<div className={"main-body"}>*/}
     {/*  <LateralBar/>*/}
     {/*  <div className={"main-content"}>*/}
