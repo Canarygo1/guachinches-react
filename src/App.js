@@ -1,6 +1,10 @@
 import './App.css';
 import {createMuiTheme, responsiveFontSizes, ThemeProvider} from "@material-ui/core";
-import BusinessApp from "./pages/businessApp";
+import ROUTES, {RenderRoutes} from "./helpers/routes";
+import {Provider} from "react-redux";
+import {createStore, applyMiddleware} from "redux";
+import RootReducer from "./redux/reducers/rootReducer";
+import thunk from 'redux-thunk';
 
 function App() {
   let theme = createMuiTheme({
@@ -17,20 +21,23 @@ function App() {
       fontSize: '10rem',
     },
   }
+  const store = createStore(RootReducer ,applyMiddleware(thunk));
 
   return (
+    <Provider store={store}>
+
     <ThemeProvider theme={theme}>
 
-      <BusinessApp>
-      </BusinessApp>
+      <RenderRoutes routes={ROUTES}/>
     {/*<div className={"main-body"}>*/}
     {/*  <LateralBar/>*/}
     {/*  <div className={"main-content"}>*/}
     {/*    <Main/>*/}
     {/*  </div>*/}
     {/*</div>*/}
-
     </ThemeProvider>
+</Provider>
+
   );
 }
 
