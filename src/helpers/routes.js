@@ -3,10 +3,29 @@ import { BrowserRouter, Switch, Route,Redirect } from 'react-router-dom';
 import BusinessApp from "../pages/businessApp";
 import ContainerWithLeftNavBar from "../components/ContainerWithLeftNavBar";
 import Main from "../pages/main";
+import Menu from "../pages/Menu";
+import Review from "../pages/review";
+import AdminMain from "../pages/adminMain";
+import Login from "../pages/login";
+import GlobalMethods from "./globalMethod";
+import DataPolicy from "../pages/dataPolicy";
+import Terms from "../pages/Terms";
 
 
 const ROUTES = [
   { path: "/", key: "ROOT", exact: true, component: BusinessApp },
+  {
+    path: "/data/dataPolicy/",
+    key: "DATA",
+    exact: true,
+    component: () => <DataPolicy/>,
+  },
+  {
+    path: "/data/terms/",
+    key: "DATA",
+    exact: true,
+    component: () => <Terms/>,
+  },
   {
     path: "/app",
     key: "APP",
@@ -17,18 +36,39 @@ const ROUTES = [
       return <RenderRoutes {...props} />;
     },
     routes: [
+
       {
-        path: "/app",
+        path: "/app/",
         key: "APP_ROOT",
         exact: true,
-        component: () => <ContainerWithLeftNavBar><Main/></ContainerWithLeftNavBar>,
+        component: () => GlobalMethods.getSessionAdmin() ? GlobalMethods.getUserRole() === 'Admin'? <Redirect to={"/app/admin/main"}/>
+          :<Login/> : GlobalMethods.getSessionEmployee()? <Redirect to={`/app/${GlobalMethods.getRestaurantId()}`}/> : <Login/>,
       },
       {
-        path: "/app/page",
+        path: "/app/:businessId",
+        key: "APP_ROOT",
+        exact: true,
+        component: () => GlobalMethods.getSessionEmployee() || GlobalMethods.getSessionAdmin() ?<ContainerWithLeftNavBar isAdmin={false}><Main/></ContainerWithLeftNavBar>: <Redirect to={"/app"}/>,
+      },
+      {
+        path: "/app/:businessId/menu",
         key: "APP_PAGE",
         exact: true,
-        component: () => <h1>App Page</h1>,
+        component: () => <ContainerWithLeftNavBar isAdmin={false}><Menu/></ContainerWithLeftNavBar>,
       },
+      {
+        path: "/app/:businessId/review",
+        key: "APP_PAGE",
+        exact: true,
+        component: () => <ContainerWithLeftNavBar isAdmin={false}><Review/></ContainerWithLeftNavBar>,
+      },
+      {
+        path: "/app/admin/main",
+        key: "APP_PAGE",
+        exact: true,
+        component: () => <ContainerWithLeftNavBar isAdmin={true}><AdminMain/></ContainerWithLeftNavBar>,
+      },
+
     ],
   },
 ];

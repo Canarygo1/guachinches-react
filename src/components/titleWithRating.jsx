@@ -2,16 +2,16 @@ import React from 'react';
 import StarRatingComponent from "react-star-rating-component";
 import {Box, Typography} from "@material-ui/core";
 
-function TitleWithRating(props) {
+function TitleWithRating({rating,name}) {
   return (
     <Box display={"flex"} flexDirection={"column"}>
-    <Typography>{props.name}</Typography>
+    <Typography>{name}</Typography>
     <Box display={"flex"} flexDirection={"row"} alignContent={"center"}>
-      <Typography variant={"h6"}>{props.rating.toString()}</Typography>
+      <Typography variant={"h6"}>{rating.toString()}</Typography>
       <Box alignSelf={"center"}>
       <StarRatingComponent
         editing={false}
-        value={props.rating}
+        value={rating}
       />
       </Box>
     </Box>

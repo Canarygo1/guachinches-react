@@ -1,11 +1,11 @@
 import React from 'react';
 import LateralBar from "./lateralBar";
 
-function ContainerWithLeftNavBar(props) {
+function ContainerWithLeftNavBar({isAdmin=false,children}) {
   return (
     <div className={"main-body"}>
-      <LateralBar/>
-      {props.children}
+      <LateralBar isAdmin={isAdmin}/>
+      {children}
     </div>
   );
 }
