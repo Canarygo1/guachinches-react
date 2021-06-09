@@ -1,6 +1,5 @@
 import React from 'react';
 import {Divider} from "@material-ui/core";
-import StarRatingComponent from 'react-star-rating-component';
 
 function Title(props) {
   return (

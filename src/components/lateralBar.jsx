@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link, useParams} from "react-router-dom";
-import Cookies from "js-cookie";
 import GlobalMethods from "../helpers/globalMethod";
 
 const LateralBar = ({isAdmin}) => {

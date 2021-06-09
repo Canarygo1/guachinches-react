@@ -29,7 +29,7 @@ function ImageDragAndDrop({loadPhotos, businessId="", photos=0}) {
           const photoData = {
             photoUrl:response.url,
             type:"normal"};
-          let addPhotoResponse = await ApiRequest.addPhoto(photoData,businessId);
+          await ApiRequest.addPhoto(photoData,businessId);
           setLoading(false);
           loadPhotos();
         }

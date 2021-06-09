@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import CategoryCard from "./categoryCard";
 import ApiRequest from "../Data/Petitions/ApiRequest";
 
@@ -17,14 +17,14 @@ function CategoryList({categories = [],categoriesSelected,setCategoriesSelected,
       if (index !== -1) {
         categoriesSelected.splice(index, 1);
       }
-      let response  = await ApiRequest.deleteRestaurantCategory(businessId, id);
+      await ApiRequest.deleteRestaurantCategory(businessId, id);
 
       setCategoriesSelected([...categoriesSelected])
     } else {
       let index = categories.findIndex((element) => {
         return element.id === id;
       })
-      let response  = await ApiRequest.addCategory(businessId, id);
+      await ApiRequest.addCategory(businessId, id);
       setCategoriesSelected(oldArray => [...oldArray, categories[index]])
     }
   }

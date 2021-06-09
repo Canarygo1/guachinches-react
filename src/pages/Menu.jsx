@@ -8,7 +8,6 @@ import ApiRequest from "../Data/Petitions/ApiRequest";
 import {useParams} from "react-router-dom";
 
 function Menu(props) {
-  const dispatch = useDispatch();
   let {businessId} = useParams();
   const {restaurantInfo} = useSelector(state => state.restaurantInfo);
   const [inputValues, setInputValues] = useState({});

@@ -34,7 +34,7 @@ function AdminMain(props) {
   const history = useHistory();
   const handleCreation = async () => {
 
-    setInputValues({...inputValues, ['ultimoPago']: parseDate});
+    setInputValues({...inputValues, 'ultimoPago': parseDate});
     console.log(inputValues)
 
     if (Object.keys(inputValues).length === 5) {
@@ -49,11 +49,14 @@ function AdminMain(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  useEffect(async () => {
-    let {data} = await ApiRequest.getAllBusiness();
-    let municipalitiesData = await ApiRequest.getAllMunicipalities();
-    setRestaurants(data.result);
-    setMunicipalities(municipalitiesData.data.result);
+  useEffect( () => {
+    async function getData() {
+      let {data} = await ApiRequest.getAllBusiness();
+      let municipalitiesData = await ApiRequest.getAllMunicipalities();
+      setRestaurants(data.result);
+      setMunicipalities(municipalitiesData.data.result);
+    }
+    getData();
   }, []);
   const rows = [];
   const tableData = () => {

@@ -6,8 +6,6 @@ import {
   Button,
   CircularProgress,
   FormControlLabel,
-  MenuItem,
-  Select,
   Switch,
   TextField,
   Typography
@@ -38,15 +36,17 @@ function Main(props) {
   const [categoriesSelected, setCateogiresSelected] = useState([]);
   const [photos, setPhotos] = useState([]);
 
-  useEffect(async () => {
-    let {data} = await ApiRequest.getAllMunicipalities();
-    setMunicipalities(data.result)
-    let categoriesData = await ApiRequest.getAllCategories();
+  useEffect( () => {
+    async function getData() {
+      let {data} = await ApiRequest.getAllMunicipalities();
+      setMunicipalities(data.result)
+      let categoriesData = await ApiRequest.getAllCategories();
 
-    setCategories(categoriesData.data.result);
-    await getAllPhotos();
-    dispatch(getRestauranInfo(businessId));
-
+      setCategories(categoriesData.data.result);
+      await getAllPhotos();
+      dispatch(getRestauranInfo(businessId));
+    }
+    getData();
   }, []);
 
   useEffect(() => {
