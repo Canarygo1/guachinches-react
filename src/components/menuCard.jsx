@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {Button, TextField, Typography} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import ApiRequest from "../Data/Petitions/ApiRequest";
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import S3 from "scaleway-s3";
@@ -41,7 +41,7 @@ function MenuCard({menu = {}, restaurantId = "",}) {
           let photoData = {
             fotoUrl:response.url
           }
-          let addPhotoResponse = await ApiRequest.updateMenuItem(photoData,restaurantId,menu.id);
+          await ApiRequest.updateMenuItem(photoData,restaurantId,menu.id);
 
         }
       }
@@ -60,7 +60,7 @@ function MenuCard({menu = {}, restaurantId = "",}) {
 
   const saveHandle = async () => {
 
-    let response = await ApiRequest.updateMenuItem(inputValues, restaurantId, menu.id);
+    await ApiRequest.updateMenuItem(inputValues, restaurantId, menu.id);
 
 
   }
