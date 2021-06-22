@@ -53,7 +53,6 @@ function Main(props) {
     setInputValues(result);
     if (result.categoriaRestaurantes !== undefined) {
       setCateogiresSelected(result.categoriaRestaurantes)
-
     }
   }, [result]);
 
@@ -107,12 +106,17 @@ function Main(props) {
             <TextFieldWithLabel value={inputValues.nombre} name="nombre" onChange={handleOnChange} label={"Nombre"}/>
             <TextFieldWithLabel value={inputValues.telefono} name="telefono" onChange={handleOnChange}
                                 label={"Telefono"}/>
+            <TextFieldWithLabel value={inputValues.movilPago} name="movilPago" onChange={handleOnChange}
+                                label={"móvil para pago"}/>
+            <Typography>Horario</Typography>
             <TextField
               id="outlined-textarea"
               multiline
-              rowsMax="4"
               rows="4"
               fullWidth={true}
+              value={inputValues.horarios}
+              onChange={handleOnChange}
+              name={"horarios"}
             />
 
             <Typography>Categorías</Typography>

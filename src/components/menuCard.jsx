@@ -28,14 +28,12 @@ function MenuCard({menu = {}, restaurantId = "",}) {
         let response = await s3.putObject({bucket, key, "body": binaryStr});
 
         if (response.status === 200) {
-          if (imgUrl !== "") {
+          if (imgUrl !== "" && imgUrl !==null) {
             let splitImg = imgUrl.split('/');
             key = `/guachinches/menu/${splitImg[splitImg.length - 1]}`;
 
-            let test = await s3.deleteObject({bucket, key});
-            console.log("/////////////////")
-            console.log(test);
-            console.log("/////////////////")
+            await s3.deleteObject({bucket, key});
+
           }
           setImgUrl(response.url);
           let photoData = {
@@ -61,7 +59,6 @@ function MenuCard({menu = {}, restaurantId = "",}) {
   const saveHandle = async () => {
 
     await ApiRequest.updateMenuItem(inputValues, restaurantId, menu.id);
-
 
   }
 
