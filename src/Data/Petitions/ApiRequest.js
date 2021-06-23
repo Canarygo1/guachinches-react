@@ -51,6 +51,13 @@ const ApiRequest = {
   async addPhoto(data, businessId){
     return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
   },
+  async addMunicipality(data, businessId){
+    return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
+  },
+  async createMunicipality(data, ){
+    return await Axios().post(`/municipality`,data)
+  },
+
   // async addPhotoBusiness(data, businessId){
   //   return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
   // },
