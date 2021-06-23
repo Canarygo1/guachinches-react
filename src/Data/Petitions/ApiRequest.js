@@ -23,6 +23,9 @@ const ApiRequest = {
   async getAllPhotos(businessId) {
     return await Axios().get(`restaurant/details/${businessId}/photos`);
   },
+  async getAllBanners() {
+    return await Axios().get(`restaurant/banners`);
+  },
   //POST
   async login(data) {
     return await Axios().post(`/login`, data);
@@ -30,6 +33,11 @@ const ApiRequest = {
   async addMenuItem(data, restaurantId) {
     return await Axios().post(`/restaurant/details/${restaurantId}/menu`, data);
 
+  },
+  async sendPaymentSMS(data) {
+      data.duracion= parseInt(data.duracion);
+
+    return await Axios().post(`/restaurant/details/${data.id}/payment`, data);
   },
   async addRestaurant(data) {
     return await Axios().post(`/restaurant`, data);
@@ -43,7 +51,16 @@ const ApiRequest = {
   async addPhoto(data, businessId){
     return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
   },
+  async addMunicipality(data, businessId){
+    return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
+  },
+  async createMunicipality(data, ){
+    return await Axios().post(`/municipality`,data)
+  },
 
+  // async addPhotoBusiness(data, businessId){
+  //   return await Axios().post(`/restaurant/details/${businessId}/photos`,data)
+  // },
   //PUT
   async updateRestaurant(businessId, data) {
     return await Axios().put(`restaurant/details/${businessId}`, data);
@@ -58,6 +75,9 @@ const ApiRequest = {
   async deleteRestaurantCategory(businessId, categoryId) {
     return await Axios().delete(`restaurant/details/${businessId}/category/${categoryId}`);
 
+  },
+  async deleteRestaurantPhoto(businessId, photoId){
+    return await Axios().delete(`restaurant/details/${businessId}/photos/${photoId}`)
   }
 }
 

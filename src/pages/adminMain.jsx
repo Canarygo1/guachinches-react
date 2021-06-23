@@ -3,7 +3,7 @@ import {
   Box,
   Button,
   Dialog, DialogActions, DialogContent,
-  DialogTitle,
+  DialogTitle, Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -17,12 +17,14 @@ import ApiRequest from "../Data/Petitions/ApiRequest";
 import {useHistory} from "react-router-dom";
 import SelectMunicipality from "../components/selectMunicipality";
 import {CheckCircle, HighlightOff} from "@material-ui/icons";
+import Alert from '@material-ui/lab/Alert';
 
 function AdminMain(props) {
-  function createData(name, zone, fat, carbs, id, status) {
-    return {name, zone, fat, carbs, id, status};
+  function createData(name, zone, fat, carbs, id, status,movilPago) {
+    return {name, zone, fat, carbs, id, status,movilPago};
   }
   const [open, setOpen] = useState(false);
+  const [openSMS, setOpenSMS] = useState(false);
 
   const [restaurants, setRestaurants] = useState([]);
   const [municipalities, setMunicipalities] = useState([]);
@@ -30,6 +32,8 @@ function AdminMain(props) {
   let parseDate = `${dateLastPayment.getFullYear()}-${dateLastPayment.getMonth()+1}-${dateLastPayment.getDate()+7}`;
 
   const [inputValues, setInputValues] = useState({'ultimoPago': parseDate});
+  const [inputValuesSMS, setInputValuesSMS] = useState({});
+  const [smsSend, setSmsSend] = useState(false);
 
   const history = useHistory();
   const handleCreation = async () => {
@@ -46,8 +50,23 @@ function AdminMain(props) {
       }
     }
   };
+  const handleSendSMS = async ()=>{
+    let response = await ApiRequest.sendPaymentSMS(inputValuesSMS);
+    console.log(response);
+    if (response.data.code === 200){
+      setSmsSend(true);
+    }
+  }
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleCloseSMS = () => {
+    setOpenSMS(false);
+  };
+  const handleOpenSMS = (row) => {
+    const {movilPago, id,  name} = row;
+    setInputValuesSMS({movilPago,id,nombre:name});
+    setOpenSMS(true);
   };
   useEffect( () => {
     async function getData() {
@@ -61,19 +80,22 @@ function AdminMain(props) {
   const rows = [];
   const tableData = () => {
     for (let i = 0; i < restaurants.length; i++) {
-      console.log(restaurants[i].ultimoPago);
-      let row = createData(restaurants[i].nombre, restaurants[i].municipio.Nombre, restaurants[i].ultimoPago, 0, restaurants[i].id, restaurants[i].enable);
+      let row = createData(restaurants[i].nombre, restaurants[i].municipio.Nombre, restaurants[i].ultimoPago, 0, restaurants[i].id, restaurants[i].enable,restaurants[i].movilPago);
       rows.push(row);
     }
   }
   tableData();
-
   const handleOnChange = useCallback(event => {
     const {name, value} = event.target;
 
     setInputValues({...inputValues, [name]: value});
   });
 
+  const handleOnChangeSMS = useCallback(event => {
+    const {name, value} = event.target;
+
+    setInputValuesSMS({...inputValuesSMS, [name]: value});
+  });
   const goButtonClicked = (businessId, route)=>{
     history.push(`/app/${businessId}${route}`);
   }
@@ -115,6 +137,7 @@ function AdminMain(props) {
               <TableCell align="right">Fecha siguiente pago</TableCell>
               <TableCell align="right">Activo</TableCell>
               <TableCell align="center">Perfil</TableCell>
+              <TableCell align="center">Pago</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -132,11 +155,51 @@ function AdminMain(props) {
                     Abrir
                   </Button>
                 </TableCell>
+                <TableCell align="center">
+                  <Button color={"primary"} onClick={()=> handleOpenSMS(row)}>
+                    Generar pago
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Dialog onClose={handleCloseSMS} aria-labelledby="simple-dialog-title" open={ openSMS}>
+          <DialogTitle id="simple-dialog-title">Enviar SMS de pago</DialogTitle>
+        <DialogContent>
+          <Box display={"flex"} flexDirection={"column"} width={"30rem"}>
+            <TextField name={"movilPago"} label={"móvil para pago"} value={inputValuesSMS.movilPago} onChange={handleOnChangeSMS}></TextField>
+            <TextField inputProps={{ maxLength: 2 }}
+                           name={"duracion"} label={"duracion (en meses)"} value={inputValuesSMS.duracion} onChange={handleOnChangeSMS}></TextField>
+            <TextField inputProps={{ maxLength: 5 }}
+                           name={"precio"} label={"precio (por mes)"} value={inputValuesSMS.precio} onChange={handleOnChangeSMS}></TextField>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseSMS} color="primary">
+            Cancelar
+          </Button>
+          <Button onClick={handleSendSMS} color="primary" autoFocus >
+            Enviar SMS
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Snackbar
+        open={smsSend}
+        variant={"success"}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        autoHideDuration={2000}
+        message="SMS enviado con exito!"
+        onClose={() => setSmsSend(false)}
+      >
+        <Alert severity={"success"}>
+          SMS enviado con exito!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

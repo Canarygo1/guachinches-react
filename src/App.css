@@ -267,6 +267,48 @@
   background-color: black;
   color: white;
 }
+.image-uploaded-outside{
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete-item{
+  position: absolute;
+  align-self: start;
+  background-color: white;
+  border-radius: 20px;
+  margin-left: 2.2rem;
+  z-index: 1;
+}
+.container-banners{
+  display: flex;
+  justify-content: center;
+  margin-top: 2%  ;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.container-drag{
+  display: flex;
+  justify-content: center;
+}
+.areas-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+.municipality-list{
+  display: flex;
+  flex-direction: column;
+
+}
+.img-banner{
+  height: 12.5rem;
+  width: 25rem;
+  border-radius: 15px;
+}
 .error-login-container{
   color:white;
   text-align: center;

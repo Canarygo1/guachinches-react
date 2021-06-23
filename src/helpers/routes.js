@@ -10,6 +10,9 @@ import Login from "../pages/login";
 import GlobalMethods from "./globalMethod";
 import DataPolicy from "../pages/dataPolicy";
 import Terms from "../pages/Terms";
+import Banners from "../pages/banners";
+import MobileAppBar from "../components/mobileAppBar";
+import Areas from "../pages/areas";
 
 
 const ROUTES = [
@@ -68,7 +71,18 @@ const ROUTES = [
         exact: true,
         component: () => <ContainerWithLeftNavBar isAdmin={true}><AdminMain/></ContainerWithLeftNavBar>,
       },
-
+      {
+        path: "/app/admin/areas",
+        key: "APP_PAGE",
+        exact: true,
+        component: () => <ContainerWithLeftNavBar isAdmin={true}><Areas/></ContainerWithLeftNavBar>,
+      },
+      {
+        path: "/app/admin/banners",
+        key: "APP_PAGE",
+        exact: true,
+        component: () => <ContainerWithLeftNavBar isAdmin={true}><Banners/></ContainerWithLeftNavBar>,
+      },
     ],
   },
 ];
