@@ -27,9 +27,9 @@ function ImageDragAndDropBanner({loadPhotos, photos=0, isBanner=false}) {
         let response = await s3.putObject({bucket, key, "body": binaryStr});
         if (response.status === 200) {
           const photoData = {
-            photoUrl:response.url,
-            type:"normal"};
-          // await ApiRequest.addPhoto(photoData,businessId);
+            fotoUrl:response.url,
+            };
+          await ApiRequest.addBanner(photoData);
           setLoading(false);
           loadPhotos();
         }
