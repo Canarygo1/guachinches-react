@@ -7,18 +7,19 @@ import ImageDragAndDropBanner from "../components/ImageDragAndDropBanner";
 function Banners(props) {
   const [banners, setBanners] = useState([]);
   useEffect(() => {
-    async function getAllBannersPhotos() {
-      let {data} = await ApiRequest.getAllBanners();
-      setBanners(data.result);
-    }
+
 
     getAllBannersPhotos();
   }, []);
+  async function getAllBannersPhotos() {
+    let {data} = await ApiRequest.getAllBanners();
+    setBanners(data.result);
+  }
   return (
     <div>
       <Title title={"Banners"}></Title>
       <div className={"container-drag"}>
-      <ImageDragAndDropBanner/>
+      <ImageDragAndDropBanner loadPhotos={() => getAllBannersPhotos().bind}/>
       </div>
 
       <div className={"container-banners"}>
