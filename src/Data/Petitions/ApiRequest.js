@@ -68,6 +68,9 @@ const ApiRequest = {
   async updateRestaurant(businessId, data) {
     return await Axios().put(`restaurant/details/${businessId}`, data);
   },
+  async updateBannerOrder(bannerId, data) {
+    return await Axios().put(`restaurant/banners/${bannerId}`, data);
+  },
   async updateMenuItem(data, restaurantId, menuItemId) {
     return await Axios().put(`/restaurant/details/${restaurantId}/menu/${menuItemId}`, data);
   },
