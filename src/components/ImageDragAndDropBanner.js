@@ -17,7 +17,6 @@ function ImageDragAndDropBanner({loadPhotos, photos=0, isBanner=false}) {
     });
 
     acceptedFiles.forEach(async (file) => {
-
       let bucket = 'louvre';
       let key = `/guachinches/${file.name}`;
       new Compressor(file, {
@@ -26,7 +25,6 @@ function ImageDragAndDropBanner({loadPhotos, photos=0, isBanner=false}) {
           let key = `/guachinches/${result.name}`;
 
           let response = await s3.putObject({bucket, key, "body": result});
-
           if (response.status === 200) {
             const photoData = {
               fotoUrl: response.url,

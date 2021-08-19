@@ -75,15 +75,18 @@ const ApiRequest = {
     return await Axios().put(`/restaurant/details/${restaurantId}/menu/${menuItemId}`, data);
   },
   async updatePhoto(data, businessId, photoId){
-    return await Axios().put(`/restaurant/details/${businessId}/photos/${photoId}`,data)
+    return await Axios().put(`/restaurant/details/${businessId}/photos/${photoId}`,data);
   },
   //REMOVE
   async deleteRestaurantCategory(businessId, categoryId) {
     return await Axios().delete(`restaurant/details/${businessId}/category/${categoryId}`);
 
   },
+  async deleteBanner(bannerId){
+    return await Axios().delete(`restaurant/banners/${bannerId}`);
+  },
   async deleteRestaurantPhoto(businessId, photoId){
-    return await Axios().delete(`restaurant/details/${businessId}/photos/${photoId}`)
+    return await Axios().delete(`restaurant/details/${businessId}/photos/${photoId}`);
   }
 }
 
