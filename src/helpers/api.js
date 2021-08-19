@@ -3,8 +3,8 @@ import Cookies from "js-cookie"
 import GlobalMethods from "./globalMethod";
 
 const Axios = (history=null)=>{
-    const baseUrl = "http://localhost:3500/";
-    // const baseUrl = "https://api.discarten.com:440/";
+    // const baseUrl = "http://localhost:3500/";
+    const baseUrl = "https://api.discarten.com:440/";
 
     let headers = {
         token:""
