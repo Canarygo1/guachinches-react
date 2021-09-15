@@ -15,7 +15,6 @@ function SelectMunicipality({municipalities = [], onChange, value}) {
     }
   }
   filteringMunicipalities();
-  console.log(value);
   return (
     <Select
       labelId="demo-simple-select-helper-label"

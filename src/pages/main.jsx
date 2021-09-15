@@ -20,8 +20,9 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {getRestauranInfo} from "../redux/actioner/restaurantAction";
 import ApiRequest from "../Data/Petitions/ApiRequest";
-import {CheckCircle} from "@material-ui/icons";
+import {CheckCircle, Schedule} from "@material-ui/icons";
 import SelectMunicipality from "../components/selectMunicipality";
+import Schedules from "../components/schedules";
 
 function Main(props) {
   let {businessId} = useParams();
@@ -57,6 +58,7 @@ function Main(props) {
   }, [result]);
 
   const handleOnChange = useCallback(event => {
+    console.log("ttest")
     let {name, value} = event.target;
     if (name === "enable") {
       value = event.target.checked;
@@ -75,6 +77,9 @@ function Main(props) {
     let photosData = await ApiRequest.getAllPhotos(businessId);
     setPhotos(photosData.data.result);
   }
+  const test = async () => {
+    console.log("test");
+  }
   return (
     <div className={"test"}>
       <Title title={"Principal"}></Title>
@@ -87,7 +92,7 @@ function Main(props) {
                 {loading ? <CircularProgress disableShrink/> :
                   saved ? <CheckCircle color={"primary"} fontSize={"large"}/> :
                     <Typography color={"secondary"}>CAMBIOS SIN GUARDAR</Typography>}
-                <Button variant="contained" color="primary" onClick={onSaveClick}>
+                <Button  onClick={onSaveClick}>
                   Guardar
                 </Button>
               </Box>
@@ -108,17 +113,17 @@ function Main(props) {
                                 label={"Telefono"}/>
             <TextFieldWithLabel value={inputValues.movilPago} name="movilPago" onChange={handleOnChange}
                                 label={"móvil para pago"}/>
-            <Typography>Horario</Typography>
-            <TextField
-              id="outlined-textarea"
-              multiline
-              rows="4"
-              fullWidth={true}
-              value={inputValues.horarios}
-              onChange={handleOnChange}
-              name={"horarios"}
-            />
-
+            {/*<Typography>Horario</Typography>*/}
+            {/*<TextField*/}
+            {/*  id="outlined-textarea"*/}
+            {/*  multiline*/}
+            {/*  rows="4"*/}
+            {/*  fullWidth={true}*/}
+            {/*  value={inputValues.horarios}*/}
+            {/*  onChange={handleOnChange}*/}
+            {/*  name={"horarios"}*/}
+            {/*/>*/}
+            <Schedules schedule={inputValues.horarios} handleOnChange={()=>test().bind}/>
             <Typography>Categorías</Typography>
             {<CategoryList categories={categories} categoriesOfRestaurant={result.categoriaRestaurantes}
                            categoriesSelected={categoriesSelected} businessId={businessId}
@@ -135,7 +140,7 @@ function Main(props) {
         <div className={"divide-row"}>
           <Typography>Fotos principales</Typography>
           <ImageDragAndDrop loadPhotos={() => getAllPhotos().bind} businessId={businessId} photos={photos.length}/>
-          <Box display={"flex"} flexDirection={"row"} gridGap={"4px"} justifyContent={"center "} minWidth={"70%"}
+          <Box display={"flex"} flexDirection={"row"} gridGap={"4px"} justifyContent={"center"} minWidth={"70%"}
                flexWrap={"wrap"} marginTop={"10px"}>
             {photos.map((e)=> <ImageUploadedCard photoId={e.id} businessId={businessId} loadPhotos={() => getAllPhotos().bind}  isMain={e.type==="principal"} imgUrl={e.photoUrl}/> )}
           </Box>

@@ -28,6 +28,11 @@
   position: fixed;
 
 }
+.schedules-top{
+  display: flex;
+  flex-direction: row;
+align-items: center;
+}
 .store-icons {
   display: flex;
   justify-content: center;
@@ -427,7 +432,11 @@
 .main-content {
   grid-area: 1 / 2 / 2 / 3;
 }
-
+.select-days {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 @media only screen and (max-width: 768px) {
   html, body {
     max-width: 100%;
