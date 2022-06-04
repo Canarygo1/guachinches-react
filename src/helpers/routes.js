@@ -11,8 +11,8 @@ import GlobalMethods from "./globalMethod";
 import DataPolicy from "../pages/dataPolicy";
 import Terms from "../pages/Terms";
 import Banners from "../pages/banners";
-import MobileAppBar from "../components/mobileAppBar";
 import Areas from "../pages/areas";
+import CheckCupon from "../pages/CheckCupon";
 
 
 const ROUTES = [
@@ -22,6 +22,12 @@ const ROUTES = [
     key: "DATA",
     exact: true,
     component: () => <DataPolicy/>,
+  },
+  {
+    path: "/cupones/check/:cuponesId",
+    key: "DATA",
+    exact: true,
+    component: () => <CheckCupon/>,
   },
   {
     path: "/data/terms/",
