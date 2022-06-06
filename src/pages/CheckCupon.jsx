@@ -6,6 +6,7 @@ import GlobalMethods from "../helpers/globalMethod";
 import CheckingCoupon from "../components/checkingCoupon";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {CloseRounded} from "@material-ui/icons";
+import axios from "axios";
 function CheckCupon(props) {
     //necesito el restaurantId,
     const [value, setValue] = useState('')
@@ -26,6 +27,7 @@ function CheckCupon(props) {
             let restaurantCookiesId = GlobalMethods.getRestaurantCuponesId();
             let couponUserId = parseUrl[parseUrl.length - 1];
             let couponBasicInfo = await ApiRequest.getCoupunData(couponUserId)
+            console.log(couponBasicInfo);
             let restaurantId = couponBasicInfo.data.restaurantId;
             let restaurant = await ApiRequest.getRestaurantById(restaurantId)
             setCoupon(couponBasicInfo.data);
