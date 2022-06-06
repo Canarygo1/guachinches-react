@@ -11,6 +11,9 @@ function App() {
     palette:{
       primary:{
         main:"#DE632C"
+      },
+      success:{
+        main:"#1CC389"
       }
     }
   })

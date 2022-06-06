@@ -19,15 +19,18 @@ class GlobalMethods {
         return (Cookies.get("restaurantId") !== undefined  && Cookies.get("refreshToken") !== undefined && Cookies.get("user") !== undefined && Cookies.get("role") === "Employee" )
     }
 
-  static getUserRole() {
-    return Cookies.get("role")
-  }
+      static getUserRole() {
+        return Cookies.get("role")
+      }
     static getUserIdCookies(){
         return Cookies.get("user");
     }
   static getRestaurantId(){
     return Cookies.get("restaurantId");
   }
+      static getRestaurantCuponesId(){
+           return  Cookies.get("restaurantCuponesId")
+      }
 }
 
 export default GlobalMethods;

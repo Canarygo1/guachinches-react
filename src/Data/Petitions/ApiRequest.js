@@ -1,12 +1,28 @@
 // let userId = GlobalMethods.getUserIdCookies();
 
 import Axios from "../../helpers/api";
+import axios from "axios";
 
 const ApiRequest = {
 
   //GET
   async getBusinessDetails(businessId) {
     return await Axios().get(`restaurant/details/${businessId}`);
+  },
+  async getCoupunData (couponUserId) {
+    return await axios.get(`https://api.guachinchesmodernos.com:459/cupones/${couponUserId}`)
+  },
+  async getRestaurantById(restaurantId) {
+    return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}`)
+  },
+  async loginRestaurantUser(restaurantId,password){
+    return await axios.post(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}/cupones/login`,{
+      password:password
+    })
+  },
+
+  async checkAndUseCoupon(couponUserId,restaurantId){
+    return await axios.put(`https://api.guachinchesmodernos.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)
   },
   async getAllBusiness() {
     return await Axios().get(`restaurant/admin`);
