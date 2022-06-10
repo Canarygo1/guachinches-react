@@ -4,8 +4,8 @@ import TitleWithRating from "../components/titleWithRating";
 import {
   Box,
   Button,
-  CircularProgress,
-  FormControlLabel,
+  CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
+  FormControlLabel, Modal,
   Switch,
   TextField,
   Typography
@@ -22,6 +22,7 @@ import {getRestauranInfo} from "../redux/actioner/restaurantAction";
 import ApiRequest from "../Data/Petitions/ApiRequest";
 import {CheckCircle} from "@material-ui/icons";
 import SelectMunicipality from "../components/selectMunicipality";
+import {useHistory} from "react-router-dom";
 
 function Main(props) {
   let {businessId} = useParams();
@@ -30,14 +31,31 @@ function Main(props) {
   const {result} = restaurantInfo;
   const [inputValues, setInputValues] = useState(result);
   const [loading, setLoading] = useState(false);
+  const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
   const [saved, setSaved] = useState(true);
   const [municipalities, setMunicipalities] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoriesSelected, setCateogiresSelected] = useState([]);
   const [photos, setPhotos] = useState([]);
+  const history = useHistory();
+
+
+
+  const handleCloseDeleteDialog =()=>{
+    setDeleteDialogIsOpen(false)
+  }
+  const handleDeleteBusiness = async () => {
+    let response = await ApiRequest.deleteRestaurant(result.id)
+    history.push(`/app/admin/main`);
+
+  }
 
   useEffect( () => {
     async function getData() {
+      const {result} = restaurantInfo;
+      setInputValues()
+      console.log(result.enable)
+      console.log(result)
       let {data} = await ApiRequest.getAllMunicipalities();
       setMunicipalities(data.result)
       let categoriesData = await ApiRequest.getAllCategories();
@@ -75,6 +93,12 @@ function Main(props) {
     let photosData = await ApiRequest.getAllPhotos(businessId);
     setPhotos(photosData.data.result);
   }
+
+  const handleOpenDeleteDialog = ()=> {
+    console.log('TESTTT')
+    setDeleteDialogIsOpen(true)
+  }
+
   return (
     <div className={"test"}>
       <Title title={"Principal"}></Title>
@@ -97,10 +121,10 @@ function Main(props) {
             </Box>
             <Box display={"flex"} flexDirection={"row"} justifyContent={"center"}>
               <FormControlLabel
-                control={<Switch size="small" color={"primary"} name={"enable"} onChange={handleOnChange}
-                                 defaultChecked={true} checked={inputValues.enable}/>}
+                control={
+                  <Switch size="small" color={"primary"} name={"enable"} onChange={handleOnChange}
+                                  checked={inputValues.enable}/>}
                 label={"ESTADO"}
-
               />
             </Box>
             <TextFieldWithLabel value={inputValues.nombre} name="nombre" onChange={handleOnChange} label={"Nombre"}/>
@@ -130,6 +154,12 @@ function Main(props) {
                                 label={"Direccion"}/>
             <TextFieldWithLabel value={inputValues.googleUrl} name={"googleUrl"} onChange={handleOnChange}
                                 label={"URL google"}/>
+
+              <Button style={{
+                marginTop:20,
+                marginBottom:20
+              }} color={'secondary'} variant={'contained'} onClick={handleOpenDeleteDialog}>Eliminar negocio</Button>
+
           </div>
         </div>
         <div className={"divide-row"}>
@@ -141,6 +171,23 @@ function Main(props) {
           </Box>
         </div>
       </div>
+      <Dialog open={deleteDialogIsOpen} onClose={handleCloseDeleteDialog}>
+        <DialogTitle id="alert-dialog-title">
+          {`ELIMINAR ${inputValues.nombre}`}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {`Estas seguro que deseas eliminar  ${inputValues.nombre}. ESTA OPERACIÓN NO ES REVERSIBLE.`}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant={'outlined'} onClick={handleCloseDeleteDialog}>Cancelar</Button>
+          <Button color={'secondary'} variant={'contained'} autoFocus onClick={handleDeleteBusiness}>
+          Aceptar
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   );
 }

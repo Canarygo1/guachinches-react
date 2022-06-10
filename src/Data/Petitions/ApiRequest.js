@@ -24,6 +24,9 @@ const ApiRequest = {
   async checkAndUseCoupon(couponUserId,restaurantId){
     return await axios.put(`https://api.discarten.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)
   },
+  async deleteRestaurant(restaurantId){
+    return await axios.delete(`https://api.discarten.com:459/restaurant/${restaurantId}`)
+  },
   async getAllBusiness() {
     return await Axios().get(`restaurant/admin`);
   },

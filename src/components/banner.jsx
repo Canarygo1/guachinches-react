@@ -1,6 +1,4 @@
 import React from 'react';
-import {Button} from "@material-ui/core";
-import ApiRequest from "../Data/Petitions/ApiRequest";
 
 function Banner({imgUrl ,restaurantId, id, index}) {
 
