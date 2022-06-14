@@ -44,6 +44,7 @@ function Main(props) {
   const handleCloseDeleteDialog =()=>{
     setDeleteDialogIsOpen(false)
   }
+
   const handleDeleteBusiness = async () => {
     let response = await ApiRequest.deleteRestaurant(result.id)
     history.push(`/app/admin/main`);

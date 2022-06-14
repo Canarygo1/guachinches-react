@@ -18,6 +18,7 @@ import {useHistory} from "react-router-dom";
 import SelectMunicipality from "../components/selectMunicipality";
 import {CheckCircle, HighlightOff} from "@material-ui/icons";
 import Alert from '@material-ui/lab/Alert';
+import SearchIcon from "@material-ui/icons/Search";
 
 function AdminMain(props) {
   function createData(name, zone, fat, carbs, id, status,movilPago) {
@@ -25,7 +26,7 @@ function AdminMain(props) {
   }
   const [open, setOpen] = useState(false);
   const [openSMS, setOpenSMS] = useState(false);
-
+  const [restaurantsAux,setRestaurantsAux] = useState([])
   const [restaurants, setRestaurants] = useState([]);
   const [municipalities, setMunicipalities] = useState([]);
   let dateLastPayment = new Date();
@@ -73,6 +74,7 @@ function AdminMain(props) {
       let {data} = await ApiRequest.getAllBusiness();
       let municipalitiesData = await ApiRequest.getAllMunicipalities();
       setRestaurants(data.result);
+      setRestaurantsAux(data.result);
       setMunicipalities(municipalitiesData.data.result);
     }
     getData();
@@ -100,11 +102,27 @@ function AdminMain(props) {
     history.push(`/app/${businessId}${route}`);
   }
 
-
+  const [searchValue,setSearchValue] = useState('');
+  const  handleSearch = (event)=>{
+    const {value} = event.target
+    setSearchValue(value);
+    console.log(restaurantsAux);
+    let obj = restaurantsAux.filter(o => o.nombre.toLowerCase().includes(value) );
+    setRestaurants(obj)
+    console.log(obj);
+  }
   return (
     <div>
       <Title title={"Lista de negocios"}/>
-      <SearchBar/>
+      <div className={"search-bar-content"}>
+        <div className="search-bar-container">
+          <SearchIcon/>
+          <input value={searchValue}  onChange={handleSearch} className={"search-bar"} type="text" placeholder={"Buscar"} name="name"/>
+        </div>
+        <Button className={"search-bar-button"} variant="contained"  color="primary">
+          Buscar
+        </Button>
+      </div>
       <Button onClick={()=>setOpen(true)} className={"search-bar-button"} variant="contained"  color="primary">
         Crear Nuevo Negocio
     </Button>
