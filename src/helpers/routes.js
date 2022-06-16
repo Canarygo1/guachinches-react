@@ -13,6 +13,7 @@ import Terms from "../pages/Terms";
 import Banners from "../pages/banners";
 import Areas from "../pages/areas";
 import CheckCupon from "../pages/CheckCupon";
+import EnableCupones from "../pages/enableCupones";
 
 
 const ROUTES = [
@@ -28,6 +29,12 @@ const ROUTES = [
     key: "DATA",
     exact: true,
     component: () => <CheckCupon/>,
+  },
+  {
+    path: "/cupones/enable/:restaurantId",
+    key: "DATA",
+    exact: true,
+    component: () => <EnableCupones/>,
   },
   {
     path: "/data/terms/",

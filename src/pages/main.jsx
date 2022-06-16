@@ -29,9 +29,10 @@ function Main(props) {
   const dispatch = useDispatch();
   const {restaurantInfo} = useSelector(state => state.restaurantInfo);
   const {result} = restaurantInfo;
-  const [inputValues, setInputValues] = useState(result);
+  const [inputValues, setInputValues] = useState({  enable:true});
   const [loading, setLoading] = useState(false);
   const [deleteDialogIsOpen, setDeleteDialogIsOpen] = useState(false);
+  const [linkGeneratorDialogIsOpen, setlinkGeneratorDialogIsOpen] = useState(false);
   const [saved, setSaved] = useState(true);
   const [municipalities, setMunicipalities] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -44,6 +45,9 @@ function Main(props) {
   const handleCloseDeleteDialog =()=>{
     setDeleteDialogIsOpen(false)
   }
+  const handleCloseLinkDialog =()=>{
+    setlinkGeneratorDialogIsOpen(false)
+  }
 
   const handleDeleteBusiness = async () => {
     let response = await ApiRequest.deleteRestaurant(result.id)
@@ -55,8 +59,7 @@ function Main(props) {
     async function getData() {
       const {result} = restaurantInfo;
       setInputValues()
-      console.log(result.enable)
-      console.log(result)
+
       let {data} = await ApiRequest.getAllMunicipalities();
       setMunicipalities(data.result)
       let categoriesData = await ApiRequest.getAllCategories();
@@ -117,6 +120,11 @@ function Main(props) {
                 </Button>
               </Box>
             </Box>
+            <Button variant={'outlined'} color={'primary'} onClick={()=>{
+
+              setlinkGeneratorDialogIsOpen(true)
+            }}>Generar link validador cupones</Button>
+
             <Box display={"flex"} justifyContent={"center"} pt={"1rem"}>
               <Typography>Datos del negocio</Typography>
             </Box>
@@ -189,6 +197,22 @@ function Main(props) {
         </DialogActions>
       </Dialog>
 
+      <Dialog open={linkGeneratorDialogIsOpen} onClose={handleCloseLinkDialog}>
+        <DialogTitle id="alert-dialog-title">
+          {`Código valido para: ${inputValues.nombre}`}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {`Tu link es: https:www.guachinchesmodernos.com/cupones/enable/${result.id}`}
+            <Button variant={'outlined'} color={'primary'} onClick={()=>{
+              navigator.clipboard.writeText(`https:www.guachinchesmodernos.com/cupones/enable/${result.id}`)}
+            } >Copiar link</Button>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant={'outlined'} onClick={handleCloseLinkDialog}>Cerrar</Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

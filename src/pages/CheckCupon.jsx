@@ -43,7 +43,6 @@ function CheckCupon(props) {
     }, [])
 
     const checkCoupon = async ()=>{
-        console.log('hola')
         let url = window.location.href;
         let parseUrl = url.split('/');
         let couponUserId = parseUrl[parseUrl.length - 1];
