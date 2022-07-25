@@ -23,6 +23,8 @@ function CheckCupon(props) {
         const getData = async () => {
             let url = window.location.href;
             let parseUrl = url.split('/');
+            console.log(parseUrl);
+
             let restaurantCookiesId = GlobalMethods.getRestaurantCuponesId();
             let couponUserId = parseUrl[parseUrl.length - 1];
             let couponBasicInfo = await ApiRequest.getCoupunData(couponUserId)
@@ -57,7 +59,7 @@ function CheckCupon(props) {
         setCouponFinalData(couponCheckResponse.data.data)
         setIsloading(false);
     }
-
+//https://www.guachinchesmodernos.com/cupones/check/92f451c1-9405-4989-81be-dcd63d947290
     const loginUser = async () => {
         const loginResponse = await ApiRequest.loginRestaurantUser(restaurant.id, value)
         if (loginResponse.data.login === true) {
@@ -96,8 +98,8 @@ function CheckCupon(props) {
                         <Typography variant={'h2'}  >Cupón valido!</Typography>
                         <Typography variant={'h4'}  >Dia validez: {couponFinalData.date}</Typography>
                         <Typography variant={'h4'}  >Descuento: -{coupon.descuento}%</Typography>
-                        <Typography   >Email usuario: {couponFinalData.cuponesUser[0].usuarios.email}</Typography>
-                        <Typography   >Restaurante: {restaurant.nombre}</Typography>
+                        <Typography >Email usuario: {couponFinalData.cuponesUser[0].usuarios.email}</Typography>
+                        <Typography >Restaurante: {restaurant.nombre}</Typography>
                     </Box>:
                         <Box style={{
                             display: 'flex',

@@ -5,7 +5,7 @@ import {
   Box,
   Button,
   CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
-  FormControlLabel, Modal,
+  FormControlLabel, MenuItem, Modal, Select,
   Switch,
   TextField,
   Typography
@@ -37,6 +37,8 @@ function Main(props) {
   const [municipalities, setMunicipalities] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoriesSelected, setCateogiresSelected] = useState([]);
+  const [selectBusinessType, setSelectBusinessType] = useState({});
+  const [allBusinessTypes, setAllBusinessTypes] = useState([]);
   const [photos, setPhotos] = useState([]);
   const history = useHistory();
 
@@ -59,7 +61,6 @@ function Main(props) {
     async function getData() {
       const {result} = restaurantInfo;
       setInputValues()
-
       let {data} = await ApiRequest.getAllMunicipalities();
       setMunicipalities(data.result)
       let categoriesData = await ApiRequest.getAllCategories();
@@ -67,17 +68,29 @@ function Main(props) {
       setCategories(categoriesData.data.result);
       await getAllPhotos();
       dispatch(getRestauranInfo(businessId));
+      let type = await getRestaurantType();
+      console.log(type);
+      setSelectBusinessType({...type})
+      let allTypes = await ApiRequest.getAllBusinessTypes();
+      console.log('types',allTypes);
+      setAllBusinessTypes([...allTypes.data])
     }
     getData();
   }, []);
 
   useEffect(() => {
-    setInputValues(result);
-    if (result.categoriaRestaurantes !== undefined) {
-      setCateogiresSelected(result.categoriaRestaurantes)
-    }
-  }, [result]);
 
+      setInputValues({...result,...inputValues});
+    console.log('input',inputValues);
+    if (result.categoriaRestaurantes !== undefined) {
+        setCateogiresSelected(result.categoriaRestaurantes)
+      }
+
+  }, [result]);
+  const getRestaurantType = async () => {
+    const response = await ApiRequest.getBusinessType(businessId)
+    return (response.data.restaurantType);
+  }
   const handleOnChange = useCallback(event => {
     let {name, value} = event.target;
     if (name === "enable") {
@@ -86,6 +99,12 @@ function Main(props) {
     setSaved(false);
     setInputValues({...inputValues, [name]: value});
   });
+
+  const handleBusinessType = (event)=>{
+      const selectedValue = allBusinessTypes.find(e => e.name = event.target.value)
+
+     setSelectBusinessType({...selectedValue})
+  }
 
   const onSaveClick = async () => {
     setLoading(true);
@@ -99,7 +118,6 @@ function Main(props) {
   }
 
   const handleOpenDeleteDialog = ()=> {
-    console.log('TESTTT')
     setDeleteDialogIsOpen(true)
   }
 
@@ -163,12 +181,18 @@ function Main(props) {
                                 label={"Direccion"}/>
             <TextFieldWithLabel value={inputValues.googleUrl} name={"googleUrl"} onChange={handleOnChange}
                                 label={"URL google"}/>
-
-              <Button style={{
+            {selectBusinessType.id &&<Select
+                onChange={handleBusinessType}
+                value={selectBusinessType.name}>
+              {allBusinessTypes.map((e, index) => {
+                return <MenuItem
+                    key={e.id} value={e.name} color={'black'}>{e.name}</MenuItem>
+              })}
+            </Select>}
+             <Button style={{
                 marginTop:20,
                 marginBottom:20
               }} color={'secondary'} variant={'contained'} onClick={handleOpenDeleteDialog}>Eliminar negocio</Button>
-
           </div>
         </div>
         <div className={"divide-row"}>

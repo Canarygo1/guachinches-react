@@ -45,6 +45,8 @@ function AdminMain(props) {
     if (Object.keys(inputValues).length === 5) {
       let response = await ApiRequest.addRestaurant(inputValues);
       console.log(response.data.code);
+      let googlePlacesIds = await ApiRequest.googlePlacesIds();
+      let googleOpening = await ApiRequest.googleOpening();
       if (response.data.code === 200){
         window.location.reload();
 

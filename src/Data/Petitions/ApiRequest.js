@@ -10,6 +10,7 @@ const ApiRequest = {
     return await Axios().get(`restaurant/details/${businessId}`);
   },
   async getCoupunData (couponUserId) {
+    console.log(couponUserId);
     return await axios.get(`https://api.discarten.com:459/cupones/${couponUserId}`)
   },
   async getRestaurantById(restaurantId) {
@@ -20,12 +21,23 @@ const ApiRequest = {
       password:password
     })
   },
-
+  async googlePlacesIds(){
+    return await axios.put(`https://api.discarten.com:459/restaurant/google/place`)
+  },
+  async googleOpening(){
+    return await axios.put(`https://api.discarten.com:459/restaurant/google/opening`)
+  },
   async checkAndUseCoupon(couponUserId,restaurantId){
     return await axios.put(`https://api.discarten.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)
   },
   async deleteRestaurant(restaurantId){
     return await axios.delete(`https://api.discarten.com:459/restaurant/${restaurantId}`)
+  },
+  async getBusinessType(restaurantId){
+    return await axios.get(`https://api.discarten.com:459/restaurant/${restaurantId}/type`)
+  },
+  async getAllBusinessTypes(){
+    return await axios.get(`https://api.discarten.com:459/types`)
   },
   async getAllBusiness() {
     return await Axios().get(`restaurant/admin`);
