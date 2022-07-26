@@ -22,10 +22,10 @@ const ApiRequest = {
     })
   },
   async googlePlacesIds(){
-    return await axios.put(`https://api.discarten.com:459/restaurant/google/place`)
+    return await axios.get(`https://api.discarten.com:459/restaurant/google/place`)
   },
   async googleOpening(){
-    return await axios.put(`https://api.discarten.com:459/restaurant/google/opening`)
+    return await axios.get(`https://api.discarten.com:459/restaurant/google/opening`)
   },
   async checkAndUseCoupon(couponUserId,restaurantId){
     return await axios.put(`https://api.discarten.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)

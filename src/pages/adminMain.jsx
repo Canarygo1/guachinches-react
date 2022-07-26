@@ -30,7 +30,7 @@ function AdminMain(props) {
   const [restaurants, setRestaurants] = useState([]);
   const [municipalities, setMunicipalities] = useState([]);
   let dateLastPayment = new Date();
-  let parseDate = `${dateLastPayment.getFullYear()}-${dateLastPayment.getMonth()+1}-${dateLastPayment.getDate()+7}`;
+  let parseDate = `${dateLastPayment.getFullYear()}-${dateLastPayment.getMonth()+1}-${dateLastPayment.getDate()}`;
 
   const [inputValues, setInputValues] = useState({'ultimoPago': parseDate});
   const [inputValuesSMS, setInputValuesSMS] = useState({});
@@ -38,20 +38,17 @@ function AdminMain(props) {
 
   const history = useHistory();
   const handleCreation = async () => {
-
     setInputValues({...inputValues, 'ultimoPago': parseDate});
-    console.log(inputValues)
 
-    if (Object.keys(inputValues).length === 5) {
       let response = await ApiRequest.addRestaurant(inputValues);
-      console.log(response.data.code);
-      let googlePlacesIds = await ApiRequest.googlePlacesIds();
+
+    let googlePlacesIds = await ApiRequest.googlePlacesIds();
+
       let googleOpening = await ApiRequest.googleOpening();
       if (response.data.code === 200){
         window.location.reload();
-
       }
-    }
+
   };
   const handleSendSMS = async ()=>{
     let response = await ApiRequest.sendPaymentSMS(inputValuesSMS);
