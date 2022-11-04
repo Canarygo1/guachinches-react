@@ -37,7 +37,7 @@ function Main(props) {
   const [municipalities, setMunicipalities] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoriesSelected, setCateogiresSelected] = useState([]);
-  const [selectBusinessType, setSelectBusinessType] = useState({});
+  const [selectBusinessType, setSelectBusinessType] = useState({id:''});
   const [allBusinessTypes, setAllBusinessTypes] = useState([]);
   const [photos, setPhotos] = useState([]);
   const history = useHistory();
@@ -58,30 +58,27 @@ function Main(props) {
   }
 
   useEffect( () => {
-    async function getData() {
-      const {result} = restaurantInfo;
-      setInputValues()
-      let {data} = await ApiRequest.getAllMunicipalities();
-      setMunicipalities(data.result)
-      let categoriesData = await ApiRequest.getAllCategories();
-
-      setCategories(categoriesData.data.result);
-      await getAllPhotos();
-      dispatch(getRestauranInfo(businessId));
-      let type = await getRestaurantType();
-      console.log(type);
-      setSelectBusinessType({...type})
-      let allTypes = await ApiRequest.getAllBusinessTypes();
-      console.log('types',allTypes);
-      setAllBusinessTypes([...allTypes.data])
-    }
     getData();
   }, []);
+  async function getData() {
+    const {result} = restaurantInfo;
+    console.log(result);
+    setInputValues()
+    let {data} = await ApiRequest.getAllMunicipalities();
+    setMunicipalities(data.result)
+    let categoriesData = await ApiRequest.getAllCategories();
 
+    setCategories(categoriesData.data.result);
+    await getAllPhotos();
+    dispatch(getRestauranInfo(businessId));
+    let type = await getRestaurantType();
+    setSelectBusinessType({...type})
+    let allTypes = await ApiRequest.getAllBusinessTypes();
+    setAllBusinessTypes([...allTypes.data])
+  }
   useEffect(() => {
 
       setInputValues({...result,...inputValues});
-    console.log('input',inputValues);
     if (result.categoriaRestaurantes !== undefined) {
         setCateogiresSelected(result.categoriaRestaurantes)
       }
@@ -101,14 +98,15 @@ function Main(props) {
   });
 
   const handleBusinessType = (event)=>{
-      const selectedValue = allBusinessTypes.find(e => e.name = event.target.value)
-
-     setSelectBusinessType({...selectedValue})
+    const selectedValue = allBusinessTypes.find(e => e.name === event.target.value)
+    setSelectBusinessType({...selectedValue})
   }
 
   const onSaveClick = async () => {
     setLoading(true);
     await ApiRequest.updateRestaurant(businessId, inputValues);
+    console.log(selectBusinessType);
+    await ApiRequest.updateRestaurantType(businessId,selectBusinessType.id)
     setLoading(false);
     setSaved(true);
   }
@@ -181,7 +179,7 @@ function Main(props) {
                                 label={"Direccion"}/>
             <TextFieldWithLabel value={inputValues.googleUrl} name={"googleUrl"} onChange={handleOnChange}
                                 label={"URL google"}/>
-            {selectBusinessType.id &&<Select
+            {selectBusinessType.id.length>0&&<Select
                 onChange={handleBusinessType}
                 value={selectBusinessType.name}>
               {allBusinessTypes.map((e, index) => {

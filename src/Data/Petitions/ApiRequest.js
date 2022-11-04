@@ -39,6 +39,9 @@ const ApiRequest = {
   async getAllBusinessTypes(){
     return await axios.get(`https://api.discarten.com:459/types`)
   },
+  async updateRestaurantType(businessId,typeId){
+    return await axios.put(`https://api.discarten.com:459/restaurant/${businessId}/type`,{id:typeId});
+  },
   async getAllBusiness() {
     return await Axios().get(`restaurant/admin`);
   },
@@ -99,6 +102,7 @@ const ApiRequest = {
   async updateRestaurant(businessId, data) {
     return await Axios().put(`restaurant/details/${businessId}`, data);
   },
+
   async updateBannerOrder(bannerId, data) {
     return await Axios().put(`restaurant/banners/${bannerId}`, data);
   },
