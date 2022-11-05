@@ -71,10 +71,14 @@ function Main(props) {
     setCategories(categoriesData.data.result);
     await getAllPhotos();
     dispatch(getRestauranInfo(businessId));
-    let type = await getRestaurantType();
-    setSelectBusinessType({...type})
+
     let allTypes = await ApiRequest.getAllBusinessTypes();
     setAllBusinessTypes([...allTypes.data])
+    let type = await getRestaurantType();
+    if (type){
+      setSelectBusinessType({...type})
+
+    }
   }
   useEffect(() => {
 
@@ -106,7 +110,10 @@ function Main(props) {
     setLoading(true);
     await ApiRequest.updateRestaurant(businessId, inputValues);
     console.log(selectBusinessType);
-    await ApiRequest.updateRestaurantType(businessId,selectBusinessType.id)
+    if (selectBusinessType.id>0){
+      await ApiRequest.updateRestaurantType(businessId,selectBusinessType.id)
+
+    }
     setLoading(false);
     setSaved(true);
   }
