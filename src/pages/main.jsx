@@ -74,12 +74,19 @@ function Main(props) {
 
     let allTypes = await ApiRequest.getAllBusinessTypes();
     setAllBusinessTypes([...allTypes.data])
+
+  }
+  const getTypeBusinessSelected = async () => {
     let type = await getRestaurantType();
-    if (type){
+    if (type && allBusinessTypes.length>0) {
+      console.log('test3',type);
       setSelectBusinessType({...type})
 
     }
   }
+  useEffect(()=>{
+    getTypeBusinessSelected();
+  },[allBusinessTypes])
   useEffect(() => {
 
       setInputValues({...result,...inputValues});
@@ -102,15 +109,16 @@ function Main(props) {
   });
 
   const handleBusinessType = (event)=>{
+
     const selectedValue = allBusinessTypes.find(e => e.name === event.target.value)
+    console.log('test2',selectedValue)
     setSelectBusinessType({...selectedValue})
   }
 
   const onSaveClick = async () => {
     setLoading(true);
     await ApiRequest.updateRestaurant(businessId, inputValues);
-    console.log(selectBusinessType);
-    if (selectBusinessType.id>0){
+    if (selectBusinessType.id.length>0){
       await ApiRequest.updateRestaurantType(businessId,selectBusinessType.id)
 
     }
@@ -186,14 +194,16 @@ function Main(props) {
                                 label={"Direccion"}/>
             <TextFieldWithLabel value={inputValues.googleUrl} name={"googleUrl"} onChange={handleOnChange}
                                 label={"URL google"}/>
-            {selectBusinessType.id.length>0&&<Select
+            <Select
                 onChange={handleBusinessType}
-                value={selectBusinessType.name}>
+                value={selectBusinessType.id}
+                >
               {allBusinessTypes.map((e, index) => {
                 return <MenuItem
                     key={e.id} value={e.name} color={'black'}>{e.name}</MenuItem>
               })}
-            </Select>}
+
+            </Select>
              <Button style={{
                 marginTop:20,
                 marginBottom:20
