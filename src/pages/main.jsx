@@ -194,16 +194,17 @@ function Main(props) {
                                 label={"Direccion"}/>
             <TextFieldWithLabel value={inputValues.googleUrl} name={"googleUrl"} onChange={handleOnChange}
                                 label={"URL google"}/>
-            <Select
+            <Typography>Tipo de negocio</Typography>
+            {allBusinessTypes.length>0&&<Select
                 onChange={handleBusinessType}
-                value={selectBusinessType.id}
+                value={selectBusinessType.name}
                 >
               {allBusinessTypes.map((e, index) => {
                 return <MenuItem
                     key={e.id} value={e.name} color={'black'}>{e.name}</MenuItem>
               })}
 
-            </Select>
+            </Select>}
              <Button style={{
                 marginTop:20,
                 marginBottom:20
