@@ -4,7 +4,7 @@ import {MenuItem, Select} from "@material-ui/core";
 function SelectMunicipality({municipalities = [], onChange, value}) {
 
   const municipalitiesFiltered = [];
-//
+
   const filteringMunicipalities = () => {
     if (municipalities.length > 0) {
       for (let i = 0; i < municipalities.length; i++) {
@@ -15,7 +15,7 @@ function SelectMunicipality({municipalities = [], onChange, value}) {
     }
   }
   filteringMunicipalities();
-  console.log(value);
+
   return (
     <Select
       labelId="demo-simple-select-helper-label"

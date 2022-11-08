@@ -37,7 +37,7 @@ function Main(props) {
   const [municipalities, setMunicipalities] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoriesSelected, setCateogiresSelected] = useState([]);
-  const [selectBusinessType, setSelectBusinessType] = useState({id:''});
+  const [selectBusinessType, setSelectBusinessType] = useState({id:'',name:''});
   const [allBusinessTypes, setAllBusinessTypes] = useState([]);
   const [photos, setPhotos] = useState([]);
   const history = useHistory();
@@ -62,7 +62,7 @@ function Main(props) {
   }, []);
   async function getData() {
     const {result} = restaurantInfo;
-    console.log(result);
+
     setInputValues()
     let {data} = await ApiRequest.getAllMunicipalities();
     setMunicipalities(data.result)
@@ -87,14 +87,23 @@ function Main(props) {
   useEffect(()=>{
     getTypeBusinessSelected();
   },[allBusinessTypes])
-  useEffect(() => {
+  useEffect(()=>{
 
+  },[])
+
+  useEffect(() => {
+      getBasicData();
       setInputValues({...result,...inputValues});
     if (result.categoriaRestaurantes !== undefined) {
         setCateogiresSelected(result.categoriaRestaurantes)
       }
 
   }, [result]);
+  const getBasicData = async () => {
+    const {data} = await ApiRequest.getBusinessDetails(businessId);
+    setInputValues({...data.result,...inputValues});
+
+  }
   const getRestaurantType = async () => {
     const response = await ApiRequest.getBusinessType(businessId)
     return (response.data.restaurantType);
