@@ -4,7 +4,7 @@ import GlobalMethods from "./globalMethod";
 
 const Axios = (history=null)=>{
     // const baseUrl = "http://localhost:3500/";
-    const baseUrl = "https://api.discarten.com:480/";
+    const baseUrl = "https://api.guachinchesmodernos.com:480/";
 
     let headers = {
         token:""

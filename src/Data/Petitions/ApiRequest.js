@@ -11,36 +11,36 @@ const ApiRequest = {
   },
   async getCoupunData (couponUserId) {
     console.log(couponUserId);
-    return await axios.get(`https://api.discarten.com:459/cupones/${couponUserId}`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/cupones/${couponUserId}`)
   },
   async getRestaurantById(restaurantId) {
-    return await axios.get(`https://api.discarten.com:459/restaurant/${restaurantId}`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}`)
   },
   async loginRestaurantUser(restaurantId,password){
-    return await axios.post(`https://api.discarten.com:459/restaurant/${restaurantId}/cupones/login`,{
+    return await axios.post(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}/cupones/login`,{
       password:password
     })
   },
   async googlePlacesIds(){
-    return await axios.get(`https://api.discarten.com:459/restaurant/google/place`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/google/place`)
   },
   async googleOpening(){
-    return await axios.get(`https://api.discarten.com:459/restaurant/google/opening`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/google/opening`)
   },
   async checkAndUseCoupon(couponUserId,restaurantId){
-    return await axios.put(`https://api.discarten.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)
+    return await axios.put(`https://api.guachinchesmodernos.com:459/cupones/check/${couponUserId}/restaurant/${restaurantId}`)
   },
   async deleteRestaurant(restaurantId){
-    return await axios.delete(`https://api.discarten.com:459/restaurant/${restaurantId}`)
+    return await axios.delete(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}`)
   },
   async getBusinessType(restaurantId){
-    return await axios.get(`https://api.discarten.com:459/restaurant/${restaurantId}/type`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}/type`)
   },
   async getAllBusinessTypes(){
-    return await axios.get(`https://api.discarten.com:459/types`)
+    return await axios.get(`https://api.guachinchesmodernos.com:459/types`)
   },
   async updateRestaurantType(businessId,typeId){
-    return await axios.put(`https://api.discarten.com:459/restaurant/${businessId}/type`,{id:typeId});
+    return await axios.put(`https://api.guachinchesmodernos.com:459/restaurant/${businessId}/type`,{id:typeId});
   },
   async getAllBusiness() {
     return await Axios().get(`restaurant/admin`);
