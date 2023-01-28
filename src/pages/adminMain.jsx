@@ -12,7 +12,6 @@ import {
   TableRow, TextField
 } from "@material-ui/core";
 import Title from "../components/title";
-import SearchBar from "../components/searchBar";
 import ApiRequest from "../Data/Petitions/ApiRequest";
 import {useHistory} from "react-router-dom";
 import SelectMunicipality from "../components/selectMunicipality";
@@ -106,7 +105,7 @@ function AdminMain(props) {
     const {value} = event.target
     setSearchValue(value);
     console.log(restaurantsAux);
-    let obj = restaurantsAux.filter(o => o.nombre.toLowerCase().includes(value) );
+    let obj = restaurantsAux.filter(o => o.nombre.toLowerCase().includes(value.toLowerCase()) );
     setRestaurants(obj)
     console.log(obj);
   }
@@ -119,7 +118,7 @@ function AdminMain(props) {
           <input value={searchValue}  onChange={handleSearch} className={"search-bar"} type="text" placeholder={"Buscar"} name="name"/>
         </div>
         <Button className={"search-bar-button"} variant="contained"  color="primary">
-          Buscar
+          Buscar 2
         </Button>
       </div>
       <Button onClick={()=>setOpen(true)} className={"search-bar-button"} variant="contained"  color="primary">
