@@ -4,7 +4,7 @@ import Banner from "../components/banner";
 import ApiRequest from "../Data/Petitions/ApiRequest";
 import ImageDragAndDropBanner from "../components/ImageDragAndDropBanner";
 import {arrayMove, SortableContainer, SortableElement} from "react-sortable-hoc";
-import {Button} from "@material-ui/core";
+import {Button, Typography} from "@material-ui/core";
 
 function Banners(props) {
   const [banners, setBanners] = useState([]);
@@ -61,6 +61,8 @@ function Banners(props) {
           <div className={"container-banners"} >
             <SortableList distance={1} axis={'xy'} items={banners} onSortEnd={onSortEnd} />
           </div>
+      <div>
+      </div>
     </div>
   );
 }

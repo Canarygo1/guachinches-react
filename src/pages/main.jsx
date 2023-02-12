@@ -3,7 +3,7 @@ import Title from "../components/title";
 import TitleWithRating from "../components/titleWithRating";
 import {
   Box,
-  Button,
+  Button, Card, CardContent,
   CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle,
   FormControlLabel, MenuItem, Modal, Select,
   Switch,
@@ -23,6 +23,8 @@ import ApiRequest from "../Data/Petitions/ApiRequest";
 import {CheckCircle} from "@material-ui/icons";
 import SelectMunicipality from "../components/selectMunicipality";
 import {useHistory} from "react-router-dom";
+import Weekdays from "../components/weekdays";
+import Coupons from "../components/coupons";
 
 function Main(props) {
   let {businessId} = useParams();
@@ -227,6 +229,11 @@ function Main(props) {
                flexWrap={"wrap"} marginTop={"10px"}>
             {photos.map((e)=> <ImageUploadedCard photoId={e.id} businessId={businessId} loadPhotos={() => getAllPhotos().bind}  isMain={e.type==="principal"} imgUrl={e.photoUrl}/> )}
           </Box>
+          <Typography style={{
+            marginTop:40,
+
+          }}>Cupones</Typography>
+          <Coupons/>
         </div>
       </div>
       <Dialog open={deleteDialogIsOpen} onClose={handleCloseDeleteDialog}>
