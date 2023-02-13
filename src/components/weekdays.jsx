@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Card, CardContent, Checkbox, MenuItem, Select, Typography} from "@material-ui/core";
+import {Box, Card, CardContent, Checkbox, MenuItem, Select, TextField, Typography} from "@material-ui/core";
 
 
 function Weekdays({days,setDays}) {
@@ -29,7 +29,7 @@ function Weekdays({days,setDays}) {
                     <Card
                         key={element.day+index}
                         style={{
-                            width:'45%',
+                            width:'75%',
                             borderRadius: 8,
                         }}
                     >
@@ -75,9 +75,17 @@ function Weekdays({days,setDays}) {
                                     })
                                 }
                                 </Select>
-                                <Typography>
-                                    Mesas
-                                </Typography>
+                                <TextField label={'Mesas'}
+                                           type={'number'}
+                                           size={'small'}
+                                           InputProps={{
+                                               inputProps: { min: 0 }
+                                           }}
+                                           value={element.mesas} onChange={(event => {
+                                    const aux = [...days];
+                                    aux[index].mesas = parseInt(event.target.value);
+                                    setDays([...aux]);
+                                })}/>
                             </Box>
                         </CardContent>
                     </Card>

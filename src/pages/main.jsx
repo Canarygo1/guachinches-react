@@ -233,7 +233,7 @@ function Main(props) {
             marginTop:40,
 
           }}>Cupones</Typography>
-          <Coupons/>
+          <Coupons restaurantId={businessId}/>
         </div>
       </div>
       <Dialog open={deleteDialogIsOpen} onClose={handleCloseDeleteDialog}>

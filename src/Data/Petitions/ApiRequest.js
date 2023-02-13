@@ -21,6 +21,9 @@ const ApiRequest = {
       password:password
     })
   },
+  async addCupones(restaurantId,data){
+    return await axios.post(`https://api.guachinchesmodernos.com:459/cupones/restaurant/${restaurantId}`,data)
+  },
   async googlePlacesIds(){
     return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/google/place`)
   },
