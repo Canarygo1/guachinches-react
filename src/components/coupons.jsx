@@ -61,6 +61,7 @@ function Coupons({restaurantId}) {
                     "totalTables":selectedDays[i].mesas,
                     "turno":selectedDays[i].turno
                 });
+                console.log('dias',dayForCreation);
             }
             const weekDays = {
                 weekDays:dayForCreation,

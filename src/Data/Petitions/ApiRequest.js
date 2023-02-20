@@ -13,6 +13,11 @@ const ApiRequest = {
     console.log(couponUserId);
     return await axios.get(`https://api.guachinchesmodernos.com:459/cupones/${couponUserId}`)
   },
+  async setCuponesPassword(password,restaurantId){
+    return await axios.put(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}/password`,{
+      password
+    })
+  },
   async getRestaurantById(restaurantId) {
     return await axios.get(`https://api.guachinchesmodernos.com:459/restaurant/${restaurantId}`)
   },

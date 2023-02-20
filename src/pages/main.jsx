@@ -43,7 +43,7 @@ function Main(props) {
   const [allBusinessTypes, setAllBusinessTypes] = useState([]);
   const [photos, setPhotos] = useState([]);
   const history = useHistory();
-
+  const [password,setPassword] = useState('');
 
 
   const handleCloseDeleteDialog =()=>{
@@ -92,7 +92,9 @@ function Main(props) {
   useEffect(()=>{
 
   },[])
-
+  const handlePasswordConfirm = async () => {
+    const response = await ApiRequest.setCuponesPassword(password, businessId);
+  }
   useEffect(() => {
       getBasicData();
       setInputValues({...result,...inputValues});
@@ -214,7 +216,6 @@ function Main(props) {
                 return <MenuItem
                     key={e.id} value={e.name} color={'black'}>{e.name}</MenuItem>
               })}
-
             </Select>}
              <Button style={{
                 marginTop:20,
@@ -263,6 +264,15 @@ function Main(props) {
             <Button variant={'outlined'} color={'primary'} onClick={()=>{
               navigator.clipboard.writeText(`https:www.guachinchesmodernos.com/cupones/enable/${result.id}`)}
             } >Copiar link</Button>
+            <Typography>También puedes generar una contraseña aquí</Typography>
+            <Box sx={{
+              display:'flex',
+              flexDirection:'row',
+              gap:20
+            }}>
+              <TextField value={password} onChange={(e)=>setPassword(e.target.value)} label={'Contraseña cupones'}/>
+              <Button onClick={handlePasswordConfirm} size={'small'} variant={'outlined'} color={'primary'}>Confirmar</Button>
+            </Box>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
