@@ -118,7 +118,7 @@ function AdminMain(props) {
           <input value={searchValue}  onChange={handleSearch} className={"search-bar"} type="text" placeholder={"Buscar"} name="name"/>
         </div>
         <Button className={"search-bar-button"} variant="contained"  color="primary">
-          Buscar 2
+          Buscar
         </Button>
       </div>
       <Button onClick={()=>setOpen(true)} className={"search-bar-button"} variant="contained"  color="primary">
