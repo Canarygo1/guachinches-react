@@ -27,13 +27,13 @@ const buttonContainerStyle = {
 
 const buttonStyle = {
     background: '#0085C4',
-    borderRadius: '18px', // Ajusta el valor para redondear los bordes
-    padding: '12px 20px',
+    borderRadius: '16px', // Ajusta el valor para redondear los bordes
+    padding: '16px 20px',
     color: 'white',
     display: 'flex',
     alignItems: 'center',
-    maxWidth: '332px',
-    minWidth: '332px',
+    maxWidth: '324px',
+    minWidth: '326px',
     justifyContent: 'start'
 
 };
