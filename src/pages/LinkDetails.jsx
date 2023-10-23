@@ -54,7 +54,7 @@ const LinkDetails = () => {
 
     return (
         <div>
-            <video autoPlay loop muted style={videoStyle}>
+            <video autoPlay loop playsInline muted style={videoStyle}>
                 <source src={videoUrl} type="video/mp4"/>
             </video>
             <div>
