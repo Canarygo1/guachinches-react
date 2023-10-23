@@ -90,13 +90,13 @@ const LinkDetails = () => {
                             <img src={googleLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
                             Escribe tu valoración
                         </IconButton>
-                        <IconButton style={buttonStyle} onClick={()=>handleButtonClick(whatsAppUrl)}>
+                        <IconButton style={{...buttonStyle,backgroundColor:'white',color:'#0085C4'}} onClick={()=>handleButtonClick(whatsAppUrl)}>
                             <img src={whatsappLogo} alt="Logo" style={{width: '30px', marginRight: '10px',
                                 objectFit: 'cover'}}/>
 
                             Comparte para valorar
                         </IconButton>
-                        <IconButton style={buttonStyle} onClick={()=>handleButtonClick(facebookUrl)}>
+                        <IconButton style={{...buttonStyle,backgroundColor:'white',color:'#0085C4'}} onClick={()=>handleButtonClick(facebookUrl)}>
                             <img src={facebookLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
                             Siguenos en Facebook
                         </IconButton>
