@@ -4,7 +4,7 @@ import LateralBar from "./lateralBar";
 function ContainerWithLeftNavBar({isAdmin=false,children}) {
   return (
     <div className={"main-body"}>
-      <LateralBar isAdmin={isAdmin}/>
+      <LateralBar  isAdmin={isAdmin}/>
       {children}
     </div>
   );

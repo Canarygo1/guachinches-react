@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^12.8.3",
     "array-move": "^4.0.0",
     "axios": "^0.21.1",
+    "caniuse-lite": "^1.0.30001551",
     "compressorjs": "^1.0.7",
     "dayjs": "^1.11.7",
     "js-cookie": "^2.2.1",

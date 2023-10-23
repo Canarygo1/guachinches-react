@@ -24,6 +24,9 @@ const LateralBar = ({isAdmin}) => {
           {canSeeAll ? <Link style={{textDecoration: 'none'}} to={`/app/admin/areas`}>
             <p style={{color: "white"}} className={"menu-item"}>Areas</p>
           </Link>: <></>}
+          {canSeeAll ? <Link style={{textDecoration: 'none'}} to={`/app/admin/areas`}>
+            <p style={{color: "white"}} className={"menu-item"}>Links</p>
+          </Link>: <></>}
           {!isAdmin?<Link style={{ textDecoration: 'none' }} to={`/app/${businessId}`}>
             <p style={{color:"white"}} className={"menu-item"}>Mi perfil</p>
           </Link>:<></>}
@@ -35,7 +38,6 @@ const LateralBar = ({isAdmin}) => {
           </Link>:<></>}
         </div>
       </div>
-
     </div>
   );
 };
