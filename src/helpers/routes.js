@@ -15,6 +15,8 @@ import Areas from "../pages/areas";
 import CheckCupon from "../pages/CheckCupon";
 import EnableCupones from "../pages/enableCupones";
 import LinkDetails from "../pages/LinkDetails";
+import RestaurantMenu from "../pages/restaurantMenu";
+import RestaurantMenuDetail from "../pages/restaurantMenuDetail";
 
 
 const ROUTES = [
@@ -49,6 +51,20 @@ const ROUTES = [
         exact: true,
         component: () =>
            <LinkDetails/>
+    },
+    {
+        path: "/link/guachinche_la_maestra/menu",
+        key: "APP_PAGE",
+        exact: true,
+        component: () =>
+           <RestaurantMenu/>
+    },
+    {
+        path: "/link/guachinche_la_maestra/menu/:platoId",
+        key: "APP_PAGE",
+        exact: true,
+        component: () =>
+           <RestaurantMenuDetail/>
     },
     {
         path: "/app",
