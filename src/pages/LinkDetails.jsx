@@ -45,6 +45,7 @@ const businessLogo = '../la_maestra.jpeg'; // Reemplaza con la URL de tu imagen
 const videoUrl = 'https://orsay.s3.fr-par.scw.cloud/384734274_1688471565007414_87389075555169632_n.mp4'; // Reemplaza con la URL de tu video en S3
 const googleUrl = 'https://search.google.com/local/writereview?placeid=ChIJr4F_AjyfagwRdQ9-WQytfqM'
 const facebookUrl = 'https://www.facebook.com/guachinchelamaestra/?locale=es_LA'
+const instagramUrl = 'https://www.instagram.com/guachinchelamaestra/'
 const whatsAppUrl = 'https://wa.me/?text=Valora el guachinche la maestra en el siguiente link: '+googleUrl
 
 const LinkDetails = () => {
@@ -96,9 +97,9 @@ const LinkDetails = () => {
 
                             Comparte para valorar
                         </IconButton>
-                        <IconButton style={{...buttonStyle,backgroundColor:'white',color:'#0085C4'}} onClick={()=>handleButtonClick(facebookUrl)}>
-                            <img src={facebookLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
-                            Siguenos en Facebook
+                        <IconButton style={{...buttonStyle,backgroundColor:'white',color:'#0085C4'}} onClick={()=>handleButtonClick(instagramUrl)}>
+                            <img src={instagramLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
+                            Siguenos en Instagram
                         </IconButton>
                         </div>
                         <Box style={{
