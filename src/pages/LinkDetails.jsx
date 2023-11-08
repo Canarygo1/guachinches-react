@@ -70,7 +70,7 @@ const LinkDetails = () => {
             <video
                 ref={videoRef}
                 loop
-
+                playsInline
                 muted
                 style={videoStyle}
             >
