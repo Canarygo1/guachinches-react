@@ -56,6 +56,12 @@ const LinkDetails = () => {
     };
     const history = useHistory();
     const videoRef = useRef(null);
+    const playVideo = () => {
+        if (videoRef.current) {
+            videoRef.current.play()
+
+        }
+    };
 
     return (
         <div>
