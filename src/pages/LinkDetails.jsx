@@ -23,7 +23,6 @@ const buttonContainerStyle = {
     left: 0,
     gap: 18,
     width: '100%',
-
     height: '100%',
 };
 
@@ -64,7 +63,7 @@ const LinkDetails = () => {
             </video>
             <div>
                 <div style={buttonContainerStyle}>
-                    <div style={{
+                    <Box style={{
                         display: 'flex',
                         flexDirection: 'column',
                         gap: 18,
@@ -123,7 +122,7 @@ const LinkDetails = () => {
                             </div>
                         </IconButton>
 
-                    </div>
+                    </Box>
                     <Box style={{
                         display: 'flex',
                         flexDirection: 'column',
