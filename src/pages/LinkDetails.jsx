@@ -97,17 +97,8 @@ const LinkDetails = () => {
                                 color: 'white',
                             }}>Guachinche la maestra</h1>
                         </div>
-                        <IconButton style={{...buttonStyle, backgroundColor: 'white', color: '#0085C4'}}
-                                    onClick={() => history.push('/link/guachinche_la_maestra/menu')}>
-                            <div style={{
-                                display: 'flex',
-                                width: '100%',
-                                justifyContent: 'center',
-                            }}>
-                                Ver carta
-                            </div>
-                        </IconButton>
-                        <IconButton sx={{...buttonStyle,backgroundColor:'main.priary'}} onClick={() => handleButtonClick(googleUrl)}>
+
+                        <IconButton sx={buttonStyle} onClick={() => handleButtonClick(googleUrl)}>
                             <img src={googleLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
                             Escribe tu valoración
                         </IconButton>
@@ -129,7 +120,16 @@ const LinkDetails = () => {
                             }}>Síguenos en Instagram
                             </div>
                         </IconButton>
-
+                        <IconButton style={{...buttonStyle, backgroundColor: 'white', color: '#0085C4'}}
+                                    onClick={() => history.push('/link/guachinche_la_maestra/menu')}>
+                            <div style={{
+                                display: 'flex',
+                                width: '100%',
+                                justifyContent: 'center',
+                            }}>
+                                Ver carta
+                            </div>
+                        </IconButton>
                     </Box>
                     <Box style={{
                         display: 'flex',
