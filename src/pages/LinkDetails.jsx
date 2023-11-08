@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {IconButton} from "@mui/material";
 import {Box} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
@@ -62,7 +62,9 @@ const LinkDetails = () => {
 
         }
     };
-
+    useEffect(() => {
+            playVideo()
+    }, []);
     return (
         <div>
             <video
