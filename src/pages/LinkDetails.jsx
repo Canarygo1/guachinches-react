@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {IconButton} from "@mui/material";
 import {Box} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
@@ -55,11 +55,19 @@ const LinkDetails = () => {
         window.open(href, '_blank'); // Replace with your external link
     };
     const history = useHistory();
+    const videoRef = useRef(null);
 
     return (
         <div>
-            <video autoPlay loop playsInline muted style={videoStyle}>
-                <source src={videoUrl} type="video/mp4"/>
+            <video
+                ref={videoRef}
+                autoPlay
+                loop
+                playsInline
+                muted
+                style={videoStyle}
+            >
+                <source src={videoUrl} type="video/mp4" />
             </video>
             <div>
                 <div style={buttonContainerStyle}>
