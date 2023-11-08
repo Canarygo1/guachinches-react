@@ -69,9 +69,8 @@ const LinkDetails = () => {
         <div>
             <video
                 ref={videoRef}
-                autoPlay
                 loop
-                playsInline
+
                 muted
                 style={videoStyle}
             >
