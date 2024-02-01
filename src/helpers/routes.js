@@ -17,6 +17,7 @@ import EnableCupones from "../pages/enableCupones";
 import LinkDetails from "../pages/LinkDetails";
 import RestaurantMenu from "../pages/restaurantMenu";
 import RestaurantMenuDetail from "../pages/restaurantMenuDetail";
+import LinkDetailsCarpintero from "../pages/LinkDetailsCarpintero";
 
 
 const ROUTES = [
@@ -51,6 +52,13 @@ const ROUTES = [
         exact: true,
         component: () =>
            <LinkDetails/>
+    },
+    {
+        path: "/link/el_carpintero",
+        key: "APP_PAGE",
+        exact: true,
+        component: () =>
+           <LinkDetailsCarpintero/>
     },
     {
         path: "/link/guachinche_la_maestra/menu",

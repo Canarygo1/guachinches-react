@@ -43,12 +43,12 @@ const instagramLogo = '../instagram_icon.png'; // Reemplaza con la URL de tu ima
 const menuLogo = '../menu_icon.png'; // Reemplaza con la URL de tu imagen
 const facebookLogo = '../facebook_icon.png'; // Reemplaza con la URL de tu imagen
 const whatsappLogo = '../whatsapp_app_icon.png'; // Reemplaza con la URL de tu imagen
-const businessLogo = '../la_maestra.jpeg'; // Reemplaza con la URL de tu imagen
-const videoUrl = 'https://orsay.s3.fr-par.scw.cloud/384734274_1688471565007414_87389075555169632_n.mp4'; // Reemplaza con la URL de tu video en S3
-const googleUrl = 'https://search.google.com/local/writereview?placeid=ChIJr4F_AjyfagwRdQ9-WQytfqM'
-const facebookUrl = 'https://www.facebook.com/guachinchelamaestra/?locale=es_LA'
-const instagramUrl = 'https://www.instagram.com/guachinchelamaestra/'
-const whatsAppUrl = 'https://wa.me/?text=Valora el guachinche la maestra en el siguiente link: ' + googleUrl
+const businessLogo = '../logo_carpintero.png'; // Reemplaza con la URL de tu imagen
+const videoUrl = 'https://orsay.s3.fr-par.scw.cloud/menus/el_carpintero.mp4'; // Reemplaza con la URL de tu video en S3
+const googleUrl = 'https://search.google.com/local/writereview?placeid=ChIJZ6r1yEgtQAwRiO3KQ9AC-hY'
+const facebookUrl = 'https://www.facebook.com/guachincheelcarpintero'
+const instagramUrl = 'https://www.instagram.com/guachincheelcarpintero/'
+const whatsAppUrl = 'https://wa.me/?text=Valora el guachinche el carpintero en el siguiente link: ' + googleUrl
 
 const LinkDetails = () => {
     const handleButtonClick = (href) => {
