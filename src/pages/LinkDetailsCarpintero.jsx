@@ -151,7 +151,11 @@ const LinkDetails = () => {
                         margin: 0,
                         color: 'white',
                     }}>
-                        <img src={'../app_icon.png'} alt="Logo" style={{width: '42px', marginRight: '10px'}}/>
+                        <Box>
+                            <img src={'../app_icon.png'} alt="Logo" style={{width: '42px', marginRight: '10px'}}/>
+                            <img src={guachichinchesModernosLogo} alt="Logo" style={{width: '42px', marginRight: '10px'}}/>
+                        </Box>
+
                         <p style={{
                             fontWeight: 'bold',
                             marginBottom: '8px',
