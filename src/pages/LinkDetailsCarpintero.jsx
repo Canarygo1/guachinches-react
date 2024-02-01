@@ -40,6 +40,7 @@ const buttonStyle = {
 };
 const googleLogo = '../google_icon.png'; // Reemplaza con la URL de tu imagen
 const instagramLogo = '../instagram_icon.png'; // Reemplaza con la URL de tu imagen
+const guachichinchesModernosLogo = '../logo_guachinches.png'; // Reemplaza con la URL de tu imagen
 const menuLogo = '../menu_icon.png'; // Reemplaza con la URL de tu imagen
 const facebookLogo = '../facebook_icon.png'; // Reemplaza con la URL de tu imagen
 const whatsappLogo = '../whatsapp_app_icon.png'; // Reemplaza con la URL de tu imagen
@@ -48,6 +49,7 @@ const videoUrl = 'https://orsay.s3.fr-par.scw.cloud/menus/el_carpintero.mp4'; //
 const googleUrl = 'https://search.google.com/local/writereview?placeid=ChIJZ6r1yEgtQAwRiO3KQ9AC-hY'
 const facebookUrl = 'https://www.facebook.com/guachincheelcarpintero'
 const instagramUrl = 'https://www.instagram.com/guachincheelcarpintero/'
+const cartaPDF = 'https://orsay.s3.fr-par.scw.cloud/menus/carta_el_carpintero.pdf'
 const whatsAppUrl = 'https://wa.me/?text=Valora el guachinche el carpintero en el siguiente link: ' + googleUrl
 
 const LinkDetails = () => {
@@ -120,7 +122,16 @@ const LinkDetails = () => {
                             </div>
                         </IconButton>
                         <IconButton style={{...buttonStyle, backgroundColor: 'white', color: '#0085C4'}}
-                                    onClick={() => history.push('/link/guachinche_la_maestra/menu')}>
+                                    onClick={() => handleButtonClick(instagramUrl)}>
+                            <img src={guachichinchesModernosLogo} alt="Logo" style={{width: '30px', marginRight: '10px'}}/>
+                            <div style={{
+                                fontSize: '23px',
+                            }}>
+                                Únete a nuestro grupo
+                            </div>
+                        </IconButton>
+                        <IconButton style={{...buttonStyle, backgroundColor: 'white', color: '#0085C4'}}
+                                    href={cartaPDF}>
                             <div style={{
                                 display: 'flex',
                                 width: '100%',
