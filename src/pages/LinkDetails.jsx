@@ -64,6 +64,7 @@ const LinkDetails = () => {
                 loop
                 playsInline
                 muted
+                autoPlay
                 style={videoStyle}
             >
                 <source src={videoUrl} type="video/mp4" />
