@@ -183,8 +183,7 @@ function Main(props) {
             <TextFieldWithLabel value={inputValues.nombre} name="nombre" onChange={handleOnChange} label={"Nombre"}/>
             <TextFieldWithLabel value={inputValues.telefono} name="telefono" onChange={handleOnChange}
                                 label={"Telefono"}/>
-            <TextFieldWithLabel value={inputValues.movilPago} name="movilPago" onChange={handleOnChange}
-                                label={"móvil para pago"}/>
+
             <Typography>Horario</Typography>
             <TextField
               id="outlined-textarea"
@@ -230,11 +229,10 @@ function Main(props) {
                flexWrap={"wrap"} marginTop={"10px"}>
             {photos.map((e)=> <ImageUploadedCard photoId={e.id} businessId={businessId} loadPhotos={() => getAllPhotos().bind}  isMain={e.type==="principal"} imgUrl={e.photoUrl}/> )}
           </Box>
-          <Typography style={{
-            marginTop:40,
-
-          }}>Cupones</Typography>
-          <Coupons restaurantId={businessId}/>
+          {/*<Typography style={{*/}
+          {/*  marginTop:40,*/}
+          {/*}}>Cupones</Typography>*/}
+          {/*<Coupons restaurantId={businessId}/>*/}
         </div>
       </div>
       <Dialog open={deleteDialogIsOpen} onClose={handleCloseDeleteDialog}>

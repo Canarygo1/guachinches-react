@@ -9,9 +9,7 @@ import thunk from 'redux-thunk';
 function App() {
   let theme = createTheme({
     palette:{
-      primary:{
-        main:"#DE632C"
-      },
+
       success:{
         main:"#1CC389"
       },

@@ -18,10 +18,17 @@ import LinkDetails from "../pages/LinkDetails";
 import RestaurantMenu from "../pages/restaurantMenu";
 import RestaurantMenuDetail from "../pages/restaurantMenuDetail";
 import LinkDetailsCarpintero from "../pages/LinkDetailsCarpintero";
+import DeleteAccount from "../pages/deleteAccount";
 
 
 const ROUTES = [
     {path: "/", key: "ROOT", exact: true, component: BusinessApp},
+    {
+        path: "/deleteAccount",
+        key: "APP_PAGE",
+        exact: true,
+        component: () => <DeleteAccount/>,
+    },
     {
         path: "/data/dataPolicy/",
         key: "DATA",

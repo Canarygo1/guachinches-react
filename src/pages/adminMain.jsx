@@ -40,12 +40,12 @@ function AdminMain(props) {
     setInputValues({...inputValues, 'ultimoPago': parseDate});
 
       let response = await ApiRequest.addRestaurant(inputValues);
-
-    let googlePlacesIds = await ApiRequest.googlePlacesIds();
-
-      let googleOpening = await ApiRequest.googleOpening();
+      console.log('add',);
+    // let googlePlacesIds = await ApiRequest.googlePlacesIds();
+    //
+    //   let googleOpening = await ApiRequest.googleOpening();
       if (response.data.code === 200){
-        window.location.reload();
+        history.push(`/app/${response.data.result.id}`);
       }
 
   };
@@ -80,6 +80,7 @@ function AdminMain(props) {
   const rows = [];
   const tableData = () => {
     for (let i = 0; i < restaurants.length; i++) {
+      console.log(restaurants[i]);
       let row = createData(restaurants[i].nombre, restaurants[i].municipio.Nombre, restaurants[i].ultimoPago, 0, restaurants[i].id, restaurants[i].enable,restaurants[i].movilPago);
       rows.push(row);
     }
@@ -149,11 +150,8 @@ function AdminMain(props) {
             <TableRow>
               <TableCell>Negocios</TableCell>
               <TableCell align="right">Zona</TableCell>
-              <TableCell align="right">Ultimo pago</TableCell>
-              <TableCell align="right">Fecha siguiente pago</TableCell>
               <TableCell align="right">Activo</TableCell>
               <TableCell align="center">Perfil</TableCell>
-              <TableCell align="center">Pago</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -163,19 +161,13 @@ function AdminMain(props) {
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.zone}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
                 <TableCell align="right">{row.status === true? <CheckCircle color={"primary"}/> : <HighlightOff color={"secondary"}/>}</TableCell>
                 <TableCell align="center">
                   <Button color={"primary"} onClick={() => goButtonClicked(row.id,"")}>
                     Abrir
                   </Button>
                 </TableCell>
-                <TableCell align="center">
-                  <Button color={"primary"} onClick={()=> handleOpenSMS(row)}>
-                    Generar pago
-                  </Button>
-                </TableCell>
+
               </TableRow>
             ))}
           </TableBody>

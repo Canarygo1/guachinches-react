@@ -82,7 +82,8 @@ const ApiRequest = {
     return await Axios().post(`/restaurant/details/${data.id}/payment`, data);
   },
   async addRestaurant(data) {
-    return await Axios().post(`/restaurant`, data);
+    console.log('creando restaurante',data);
+    // return await Axios().post(`/restaurant`, data);
   },
   async addCategory(businessId, categoriaId) {
     let data = {categoriaId: categoriaId};

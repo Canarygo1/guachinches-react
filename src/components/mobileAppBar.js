@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {AppBar, Button, Drawer, IconButton, Toolbar, Typography, withStyles} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
 
-function MobileAppBar({children, classes}) {
+function MobileAppBar({children}) {
   const [drawerIsOpen, setdrawerIsOpen] = useState(false);
   let clickDrawer = () =>{
-    console.log("HOLAAa");
     setdrawerIsOpen(!drawerIsOpen);
   }
 

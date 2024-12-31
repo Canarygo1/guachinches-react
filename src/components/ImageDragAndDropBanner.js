@@ -23,7 +23,6 @@ function ImageDragAndDropBanner({loadPhotos, photos=0, isBanner=false}) {
         quality: 0.6,
         async success(result) {
           let key = `/guachinches/${result.name}`;
-
           let response = await s3.putObject({bucket, key, "body": result});
           if (response.status === 200) {
             const photoData = {
